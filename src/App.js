@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import OffersContainer from "./offers/OffersContainer";
+import CartContainer from "./cart/CartContainer";
 
 function App() {
   return (
@@ -28,8 +29,9 @@ function App() {
           </div>
         </nav>
       </header>
-      <article  className="container">
+      <article className="container">
         <OffersContainer />
+        <CartContainer />
       </article>
     </div>
   );

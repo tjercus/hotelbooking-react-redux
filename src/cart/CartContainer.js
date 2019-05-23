@@ -1,20 +1,19 @@
 import { connect } from 'react-redux'
-// import { addOfferAction } from './offersActions'
-import OffersList from './OffersList'
-import {addOfferAction} from "./offersActions";
+import CartList from './CartList'
+import {delItemAction} from "./cartActions";
 
 const mapStateToProps = state => {
   console.log("mapStateToProps", state);
   return {
-    offers: state.offersReducer.offers
+    items: state.cartReducer.items
   }
 };
 
 const mapDispatchToProps = dispatch => ({
-  addOfferAction: dispatch(addOfferAction())
+  delItemAction: dispatch(delItemAction())
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(OffersList)
+)(CartList)
