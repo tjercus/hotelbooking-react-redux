@@ -1,7 +1,9 @@
 ﻿export default class Offer {
-  constructor(id, name, price) {
-    this.id = id;
-    this.name = name;
-    this.price = price;
+  constructor(value) {
+    this.$value = value
+  }
+
+  static of(value) {
+    return new Offer(value);
   }
 }

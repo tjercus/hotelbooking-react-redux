@@ -1,6 +1,5 @@
 "use strict";
 
-import EventEmitter from "eventemitter2";
 import Offer from "./Offer";
 
 /**
@@ -8,19 +7,15 @@ import Offer from "./Offer";
  */
 export default class OffersRepository {
 
-  constructor(eventbus) {
-  	this.eventbus = eventbus;
+  constructor() {
   	this.STORAGE_ID = "hotelbooking";
 
   	let offers = this.getOffers();
   	if (offers.length === 0) {
-      offers.push(new Offer("1", "Hotel New York", 34.95));
-      offers.push(new Offer("2", "Hostel Hospitable Amsterdam", 12.95));
+      offers.push(Offer.of({id: "1", name: "Hotel New York", price: 34.95} ));
+      offers.push(Offer.of({id: "2", name: "Hostel Hospitable Amsterdam", price: 12.95} ));
       this.putOffers(offers);
     }
-    this.eventbus.on("OFFERSSTORE_GETALL_CMD", (() => {
-      this.eventbus.emit("OFFERSSTORE_GETALL_EVT", this.getOffers());
-    }));
   }
 
   /**
@@ -35,7 +30,6 @@ export default class OffersRepository {
   */
   putOffers(offers) {
     localStorage.setItem(this.STORAGE_ID + "_offers", JSON.stringify(offers));
-    this.eventbus.emit("OFFERSSTORE_CHANGED_EVT", offers);
   }
 
   /**
