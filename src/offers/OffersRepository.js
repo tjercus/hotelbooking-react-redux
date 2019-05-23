@@ -1,5 +1,3 @@
-"use strict";
-
 import Offer from "./Offer";
 
 /**
@@ -16,11 +14,13 @@ export default class OffersRepository {
       offers.push(Offer.of({id: "2", name: "Hostel Hospitable Amsterdam", price: 12.95} ));
       this.putOffers(offers);
     }
+  	console.log("offers in localstorage is now", offers);
   }
 
   /**
    * @returns {Offer[]} offers
    */
+  // TODO return promise so the user can use it async (to practise redux-thunk or redux-observable for example)
   getOffers() {
     return JSON.parse(localStorage.getItem(this.STORAGE_ID + "_offers") || "[]");
   }

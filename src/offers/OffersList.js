@@ -3,11 +3,12 @@ import OfferRowComponent from "./OfferRowComponent";
 import PropTypes from "prop-types";
 
 const OffersList = ({ offers }) => {
+  console.log("OffersList", offers);
   return (
     <section id="offers" className={"offers-panel"}>
       <h2>Offers</h2>
 
-      <table id="offers-list" className="pure-table pure-table-bordered">
+      <table id="offers-list" className="striped">
         <thead>
           <tr>
             <th>Hotel</th>

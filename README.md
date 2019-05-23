@@ -3,6 +3,12 @@
 
 demo hotelbooking app with react, redux and react-redux
 
+## TODO
+
+ - use a styling engine or css framework like materializecss.com
+
+## credits
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

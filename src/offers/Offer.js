@@ -1,6 +1,6 @@
 ﻿export default class Offer {
   constructor(value) {
-    this.$value = value
+    this.value = value
   }
 
   static of(value) {

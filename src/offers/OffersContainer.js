@@ -3,9 +3,12 @@ import { connect } from 'react-redux'
 import OffersList from './OffersList'
 import {addOfferAction} from "./offersActions";
 
-const mapStateToProps = state => ({
-  offers: state.offers
-});
+const mapStateToProps = state => {
+  console.log("mapStateToProps", state);
+  return {
+    offers: state.offers // state.offersReducer.offers
+  }
+};
 
 const mapDispatchToProps = dispatch => ({
   addOfferAction: dispatch(addOfferAction())
