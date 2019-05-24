@@ -1,20 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
+import ItemRowComponent from "../item/ItemRowComponent";
 
-import { addItemAction } from "../cart/cartActions";
-
-const OfferRowComponent = ({ offer }) =>
-  offer ? (
-    <tr key={offer.id}>
-      <td>{offer.name}</td>
-      <td>{offer.price}</td>
-      <td><button onClick={addItemAction}>add to cart</button></td>
-    </tr>
-  ) : null;
-
+const OfferRowComponent = ({ offer, addItemToCartAction }) => (
+  <ItemRowComponent item={offer}>
+    <button
+      onClick={() => addItemToCartAction(offer)}
+      className="btn waves-effect waves-light green lighten-0"
+    >
+      {"add to cart"}
+    </button>
+  </ItemRowComponent>
+);
 
 OfferRowComponent.propTypes = {
-  offer: PropTypes.object.isRequired
+  offer: PropTypes.object.isRequired,
+  addItemToCartAction: PropTypes.func.isRequired
 };
 
 export default OfferRowComponent;

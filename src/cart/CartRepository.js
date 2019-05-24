@@ -1,6 +1,6 @@
 "use strict";
 
-import Offer from "../offers/Offer";
+import Item from "../item/Item";
 
 export default class CartRepository {
 
@@ -22,14 +22,14 @@ export default class CartRepository {
   }
 
   /**
-   * @returns {Offer[]} cart
+   * @returns {Item[]} cart
    */
   getCart() {
     return JSON.parse(localStorage.getItem(this.STORAGE_ID + "_cart") || "[]");
   }
 
   /**
-   * @param {Offer[]} cart
+   * @param {Item[]} cart
   */
   putCart(cart) {
     localStorage.setItem(this.STORAGE_ID + "_cart", JSON.stringify(cart));
@@ -37,7 +37,7 @@ export default class CartRepository {
   }
 
   /**
-   * @param {Offer} offer
+   * @param {Item} offer
    */
   addOfferToCart(offer) {
     let cart = this.getCart();
@@ -57,7 +57,7 @@ export default class CartRepository {
   }
 
   /**
-   * @param {Offer} offer
+   * @param {Item} offer
    */
   removeOfferFromCart(offer) {
     let cart = this.getCart();

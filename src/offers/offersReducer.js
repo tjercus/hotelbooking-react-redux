@@ -2,8 +2,8 @@ const ADD_OFFER_CMD = "ADD_OFFER_CMD";
 
 const defaultState = {
   offers: [
-    { id: "1", name: "Hotel New York", price: 34.95 },
-    { id: "2", name: "Hostel Hospitable Amsterdam", price: 12.95 }
+    { id: 1, name: "Hotel New York", price: 34.95 },
+    { id: 2, name: "Hostel Hospitable Amsterdam", price: 12.95 }
   ]
 };
 

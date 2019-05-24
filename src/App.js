@@ -9,10 +9,10 @@ function App() {
       <header>
         <nav className={"#90caf9 blue center-align"}>
           <div className="nav-wrapper">
-            <a href="#" class="brand-logo">
+            <a href="#" className="brand-logo">
               Hotelbooking with redux
             </a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <ul id="nav-mobile" className="right hide-on-med-and-down">
               <li>
                 <a href="#">Offers</a>
               </li>

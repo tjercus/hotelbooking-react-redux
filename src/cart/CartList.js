@@ -1,27 +1,36 @@
 import React from "react";
-import OfferRowComponent from "../offers/OfferRowComponent";
 import PropTypes from "prop-types";
 
-const CartList = ({ items }) => {
+import CartRowComponent from "./CartRowComponent";
+
+const CartList = ({ items, total, delItemFromCartAction }) => {
   console.log("CartList", items);
   return (
-    <section id="cart" className={"cart-panel"}>
-      <h2>Cart</h2>
+    <section id="cart" className={"cart-panel card-panel"}>
+      <h2 className={"header"}>Cart</h2>
 
       <table id="cart-list" className="striped">
         <thead>
-        <tr>
-          <th>Hotel</th>
-          <th>Price</th>
-          <th>Actions</th>
-        </tr>
+          <tr>
+            <th>Hotel</th>
+            <th>Price</th>
+            <th>Actions</th>
+          </tr>
         </thead>
         <tbody>
-        {items.map((offer, i) => (
-          <OfferRowComponent offer={offer} key={i} />
-        ))}
+          {items.map((item, i) => (
+            <CartRowComponent
+              item={item}
+              delItemFromCartAction={delItemFromCartAction}
+              key={i}
+            />
+          ))}
         </tbody>
+        <tfoot>
+          <td colSpan={3}>{"Total:"} {total}</td>
+        </tfoot>
       </table>
+
     </section>
   );
 };
@@ -33,7 +42,9 @@ CartList.propTypes = {
       name: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired
     }).isRequired
-  ).isRequired
+  ).isRequired,
+  total: PropTypes.number.isRequired,
+  delItemFromCartAction: PropTypes.func.isRequired
 };
 
 export default CartList;

@@ -1,8 +1,8 @@
-import {ADD_OFFER_CMD} from "./offersConstants";
+// import {ADD_OFFER_CMD} from "./offersConstants";
 
-export const addOfferAction = offer => ({
-         type: ADD_OFFER_CMD,
-         payload: {
-           offer
-         }
-       });
+// export const addOfferActionCreator = offer => ({
+//          type: ADD_OFFER_CMD,
+//          payload: {
+//            offer
+//          }
+//        });

@@ -1,11 +1,12 @@
 import React from "react";
-import OfferRowComponent from "./OfferRowComponent";
 import PropTypes from "prop-types";
 
-const OffersList = ({ offers }) => {
+import OfferRowComponent from "./OfferRowComponent";
+
+const OffersList = ({ offers, addItemToCartAction }) => {
   console.log("OffersList", offers);
   return (
-    <section id="offers" className={"offers-panel"}>
+    <section id="offers" className={"offers-panel card-panel"}>
       <h2>Offers</h2>
 
       <table id="offers-list" className="striped">
@@ -18,7 +19,11 @@ const OffersList = ({ offers }) => {
         </thead>
         <tbody>
           {offers.map((offer, i) => (
-            <OfferRowComponent offer={offer} key={i} />
+            <OfferRowComponent
+              addItemToCartAction={addItemToCartAction}
+              offer={offer}
+              key={i}
+            />
           ))}
         </tbody>
       </table>
