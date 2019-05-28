@@ -49,7 +49,7 @@ const RegistrationComponent = () => {
   // 	this.setState({currentFormPart: FORM_PARTS[newIndex]});
   // }
 
-  return <section id="regform" className={}>
+  return <section id="regform" className={""}>
 		<form name="registration-form" className="pure-form pure-form-stacked">
 			<RegistrationPersonComponent currentFormPart={state.currentFormPart}/>
 			<RegistrationContactComponent currentFormPart={state.currentFormPart}/>

@@ -1,15 +1,13 @@
-"use strict";
-
 import Result from "../Result";
 
 export default class User {
   constructor(values = {}) {
-    (this.name = values.name || ""),
-      (this.gender = values.gender || ""),
-      (this.state = values.state || ""),
-      (this.phone = values.phone || ""),
-      (this.email = values.email || ""),
-      (this.creditcard = values.creditcard || "");
+    this.name = values.name || "";
+    this.gender = values.gender || "";
+		this.state = values.state || "";
+    this.phone = values.phone || "";
+    this.email = values.email || "";
+    this.creditcard = values.creditcard || "";
   }
 
   validateName() {

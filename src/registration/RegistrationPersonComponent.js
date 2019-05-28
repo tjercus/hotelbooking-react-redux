@@ -25,9 +25,7 @@ export const RegistrationPersonComponent = ({}) => {
   return (
       <section
         id="registration-person"
-        className={
-          // currentFormPart === "person" ? "visible" : "hidden"
-        }
+        className={""}
       >
         <legend>Who are you?</legend>
         <fieldset>
