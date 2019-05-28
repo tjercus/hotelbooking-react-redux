@@ -9,15 +9,15 @@ export default class RegistrationContactComponent extends React.Component {
     this.state = {
     	email: null,
     	phone: null
-    }
+    };
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onBlurHandler = this.onBlurHandler.bind(this);
 	}
 
-	onChangeHandler(evt) {  	
+	onChangeHandler(evt) {
   	let data = [];
   	data[evt.target.name] = evt.target.value;
-  	this.setState(data);  	
+  	this.setState(data);
   }
 
   onBlurHandler(evt) {
@@ -26,13 +26,13 @@ export default class RegistrationContactComponent extends React.Component {
 
 	render() {
 		return (
-			<section id="registration-contact" 
+			<section id="registration-contact"
 			className={this.props.currentFormPart === 'contact' ? 'visible' : 'hidden'}>
 			<legend>How can we contact you?</legend>
 						<fieldset>
 							<label htmlFor="email">Email</label>
 							<input id="email" name="email" type="text"
-								value={this.state.email} 
+								value={this.state.email}
 								onChange={this.onChangeHandler}
 								onBlur={this.onBlurHandler}
 								placeholder="Email" />

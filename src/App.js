@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import OffersContainer from "./offers/OffersContainer";
 import CartContainer from "./cart/CartContainer";
+import RegistrationComponent from "./registration/RegistrationComponent";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
       <article className="container">
         <OffersContainer />
         <CartContainer />
+        <RegistrationComponent />
       </article>
     </div>
   );

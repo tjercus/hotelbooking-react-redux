@@ -1,8 +1,6 @@
-"use strict";
-
 import React from "react";
-import User from "../models/User";
-import Result from "../models/Result";
+import User from "./User";
+import Result from "../Result";
 import RegistrationPersonComponent from "./RegistrationPersonComponent";
 import RegistrationContactComponent from "./RegistrationContactComponent";
 import RegistrationPaymentComponent from "./RegistrationPaymentComponent";
@@ -15,100 +13,72 @@ const FORM_PARTS = [
 	"summary"
 ];
 
-export default class RegistrationComponent extends React.Component {
+const state = {
+	isVisible: false,
+	currentFormPart: "person",
+	errorMessages: []
+};
 
-	constructor(props) {
-    super(props);
-    this.state = {
-      isVisible: false,
-      currentFormPart: "person",
-      errorMessages: []
-    };
-    this.user = new User();
-    this.onPreviousClick = this.onPreviousClick.bind(this);
-    this.onNextClick = this.onNextClick.bind(this);   
-    this.goPrevious = this.goPrevious.bind(this);
-    this.goNext = this.goNext.bind(this);
-    this.validateUser = this.validateUser.bind(this);   
-  }
+const RegistrationComponent = () => {
 
-  componentDidMount() {    
-    this.props.eventbus.on("MENU_CLICK_EVT", ((menuItemName) => {
-      if (menuItemName === this.props.from) {        
-        this.setState({isVisible: true});
-      } else {
-        this.setState({isVisible: false});      
-			}
-		}));
-		this.props.eventbus.on("USER_CHANGED_EVT", ((dataObj) => {
-			this.user[dataObj.key] = dataObj.value;
-		}));
-  }  
+  // onPreviousClick(evt) {
+  // 	evt.preventDefault();
+  // 	this.validateUser();
+  // 	this.goPrevious();
+  // }
+	//
+  // goPrevious() {
+  // 	let currentIndex = FORM_PARTS.indexOf(this.state.currentFormPart);
+  // 	let newIndex = FORM_PARTS.indexOf(this.state.currentFormPart) - 1;
+  // 	let lastIndex = (FORM_PARTS.length - 1);
+  // 	if (newIndex < 0) newIndex = lastIndex;
+  // 	this.setState({currentFormPart: FORM_PARTS[newIndex]});
+  // }
+	//
+  // onNextClick(evt) {
+  // 	evt.preventDefault();
+  // 	this.validateUser();
+  // 	this.goNext();
+	// }
+	//
+	// goNext() {
+  // 	let currentIndex = FORM_PARTS.indexOf(this.state.currentFormPart);
+  // 	let newIndex = FORM_PARTS.indexOf(this.state.currentFormPart) + 1;
+  // 	let lastIndex = (FORM_PARTS.length - 1);
+  // 	if (newIndex > lastIndex) newIndex = 0;
+  // 	this.setState({currentFormPart: FORM_PARTS[newIndex]});
+  // }
 
-	validateUser() {		
-		const result = this.user.validate();  	
-  	this.setState({errorMessages: result.getErrorMessages()});  	
-	}
+  return <section id="regform" className={}>
+		<form name="registration-form" className="pure-form pure-form-stacked">
+			<RegistrationPersonComponent currentFormPart={state.currentFormPart}/>
+			<RegistrationContactComponent currentFormPart={state.currentFormPart}/>
+			<RegistrationPaymentComponent currentFormPart={state.currentFormPart}/>
+			<RegistrationSummaryComponent currentFormPart={state.currentFormPart}/>
 
-  onPreviousClick(evt) {  	
-  	evt.preventDefault();  	
-  	this.validateUser();
-  	this.goPrevious();
-  }
+			<section id="error-messages" className={state.errorMessages.length > 0 ? 'visible' : 'hidden'}>
+				<ul role="alert">
+					{state.errorMessages.map((msg, i) => {
+						return (<li key={i}>{msg}</li>);
+					})}
+				</ul>
+			</section>
 
-  goPrevious() {
-  	let currentIndex = FORM_PARTS.indexOf(this.state.currentFormPart);  	
-  	let newIndex = FORM_PARTS.indexOf(this.state.currentFormPart) - 1;
-  	let lastIndex = (FORM_PARTS.length - 1);
-  	if (newIndex < 0) newIndex = lastIndex;  	
-  	this.setState({currentFormPart: FORM_PARTS[newIndex]});
-  }
+			<nav>
+				<ul>
+					<li><a onClick={() => {
+					}} className="btn">{"Previous"}</a></li>
+					<li>
+						<button onClick={() => {
+						}} className="btn">{"Next"}</button>
+					</li>
+				</ul>
+			</nav>
+		</form>
+	</section>
+  };
 
-  onNextClick(evt) {  
-  	evt.preventDefault();
-  	this.validateUser();
-  	this.goNext();  
-	}
-
-	goNext() {
-  	let currentIndex = FORM_PARTS.indexOf(this.state.currentFormPart);
-  	let newIndex = FORM_PARTS.indexOf(this.state.currentFormPart) + 1;
-  	let lastIndex = (FORM_PARTS.length - 1);
-  	if (newIndex > lastIndex) newIndex = 0;  	
-  	this.setState({currentFormPart: FORM_PARTS[newIndex]});
-  }
-
-  render() {
-  	let panelClassName = this.state.isVisible ? "panel visible" : "panel hidden";  	
-  	let errorLis = [];  	
-    this.state.errorMessages.map((msg, i) => {    	
-      errorLis.push(<li key={i}>{msg}</li>);
-    })
-  	return (
-  		<section id="regform" className={panelClassName}>
-  			<form name="registration-form" className="pure-form pure-form-stacked">
-					<RegistrationPersonComponent currentFormPart={this.state.currentFormPart} eventbus={this.props.eventbus} />
-					<RegistrationContactComponent currentFormPart={this.state.currentFormPart} eventbus={this.props.eventbus} />
-					<RegistrationPaymentComponent currentFormPart={this.state.currentFormPart} eventbus={this.props.eventbus} />
-					<RegistrationSummaryComponent currentFormPart={this.state.currentFormPart} eventbus={this.props.eventbus} />
-
-					<section id="error-messages" className={this.state.errorMessages.length > 0 ? 'visible' : 'hidden'}>
-						<ul role="alert">						
-							{errorLis}
-						</ul>
-					</section>
-
-					<nav>
-						<ul>
-							<li><a onClick={this.onPreviousClick} className="pure-button">{"Previous"}</a></li>
-							<li><button onClick={this.onNextClick} className="pure-button pure-button-primary">{"Next"}</button></li>
-						</ul>
-					</nav>
-				</form>
-  		</section>)
-  }
-
-}
+export default RegistrationComponent;
 
 // RegistrationComponent.prototype.propTypes: {
 // 	value: React.PropTypes.object.isRequired,
