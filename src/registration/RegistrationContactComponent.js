@@ -1,51 +1,52 @@
-"use strict";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 
-import React from "react";
+const RegistrationContactComponent = ({ updateUserAction }) => {
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState(0);
 
-export default class RegistrationContactComponent extends React.Component {
+  return (
+    <section id="registration-contact">
+      <legend>How can we contact you?</legend>
+      <fieldset className={"row"}>
+        <label htmlFor="email">Email</label>
+        <input
+          id="email"
+          name="email"
+          type="text"
+          value={email}
+          onChange={evt => {
+            setEmail(evt.target.value);
+          }}
+          onBlur={() => {
+            updateUserAction({ email: email });
+          }}
+          placeholder="Email"
+        />
+      </fieldset>
 
-	constructor(props) {
-    super(props);
-    this.state = {
-    	email: null,
-    	phone: null
-    };
-    this.onChangeHandler = this.onChangeHandler.bind(this);
-    this.onBlurHandler = this.onBlurHandler.bind(this);
-	}
+      <fieldset className={"row"}>
+        <label htmlFor="phone">Telephone</label>
+        <input
+          id="phone"
+          name="phone"
+          type="tel"
+          value={phone}
+          onChange={evt => {
+            setPhone(evt.target.value);
+          }}
+          onBlur={() => {
+            updateUserAction({ phone: phone });
+          }}
+          placeholder="Telephone"
+        />
+      </fieldset>
+    </section>
+  );
+};
 
-	onChangeHandler(evt) {
-  	let data = [];
-  	data[evt.target.name] = evt.target.value;
-  	this.setState(data);
-  }
+RegistrationContactComponent.propTypes = {
+  updateUserAction: PropTypes.func.isRequired
+};
 
-  onBlurHandler(evt) {
-  	this.props.eventbus.emit("USER_CHANGED_EVT", {key: evt.target.name, value: evt.target.value});
-  }
-
-	render() {
-		return (
-			<section id="registration-contact"
-			className={this.props.currentFormPart === 'contact' ? 'visible' : 'hidden'}>
-			<legend>How can we contact you?</legend>
-						<fieldset>
-							<label htmlFor="email">Email</label>
-							<input id="email" name="email" type="text"
-								value={this.state.email}
-								onChange={this.onChangeHandler}
-								onBlur={this.onBlurHandler}
-								placeholder="Email" />
-						</fieldset>
-
-						<fieldset>
-							<label htmlFor="phone">Telephone</label>
-							<input id="phone" name="phone" type="tel"
-								value={this.state.phone}
-								onChange={this.onChangeHandler}
-								onBlur={this.onBlurHandler}
-								placeholder="Telephone"/>
-			</fieldset>
-		</section>);
-	}
-}
+export default RegistrationContactComponent;

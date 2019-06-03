@@ -8,3 +8,6 @@ h2 {
   margin: 0em;
 }
 
+fieldset {
+  border: 0;
+}

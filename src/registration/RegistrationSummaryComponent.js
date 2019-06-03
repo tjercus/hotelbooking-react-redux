@@ -1,41 +1,35 @@
 import React from "react";
-//import User from "../models/User";
-//import Result from "../models/Result";
+import PropTypes from "prop-types";
+import { userShape } from "./registrationConstants";
 
-const state = {
-	name: null,
-	gender: null,
-	state: null,
-	email: null,
-	phone: null,
-	creditcard: null
-}
-
-const RegistrationSummaryComponent  = ({currentFormPart}) => {
+const RegistrationSummaryComponent  = ({user, registerUserAction}) => {
 		return (
-			<section id="registration-summary"
-				className={currentFormPart === 'summary' ? 'visible' : 'hidden'}>
+			<section id="registration-summary">
 						<legend>Summary</legend>
 						<fieldset>
 							<dl>
 								<dt>Name</dt>
-								<dd>{this.state.name}</dd>
+								<dd>{user.name}</dd>
 								<dt>Gender</dt>
-								<dd>{this.state.gender}</dd>
-								<dt>State</dt>
-								<dd>{this.state.state}</dd>
+								<dd>{user.gender}</dd>
+								<dt>State/Province</dt>
+								<dd>{user.province}</dd>
 								<dt>Email</dt>
-								<dd>{this.state.email}</dd>
+								<dd>{user.email}</dd>
 								<dt>Telephone</dt>
-								<dd>{this.state.phone}</dd>
-								<dt>Name</dt>
-								<dd>{this.state.creditcard}</dd>
+								<dd>{user.phone}</dd>
+								<dt>Creditcard</dt>
+								<dd>{user.creditcard}</dd>
 							</dl>
 						</fieldset>
 
-						<button onClick={() => {}} className="pure-button pure-button-primary">{"Register"}</button>
+						<button onClick={() => {registerUserAction(user)}} className="btn button">{"Register"}</button>
 			</section>
 			)
 		};
+
+RegistrationSummaryComponent.propTypes = {
+	user: PropTypes.shape(userShape)
+};
 
 export default RegistrationSummaryComponent;

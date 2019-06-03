@@ -27,10 +27,13 @@ const CartList = ({ items, total, delItemFromCartAction }) => {
           ))}
         </tbody>
         <tfoot>
-          <td colSpan={3}>{"Total:"} {total}</td>
+          <tr>
+            <td colSpan="3">
+              {"Total:"} {total}
+            </td>
+          </tr>
         </tfoot>
       </table>
-
     </section>
   );
 };
