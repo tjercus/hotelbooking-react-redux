@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "folktale": "^2.3.2",
     "materialize-css": "^1.0.0-rc.2",
     "prettier": "^1.17.1",
     "prop-types": "latest",

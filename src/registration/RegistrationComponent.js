@@ -10,12 +10,7 @@ import RegistrationSummaryComponent from "./RegistrationSummaryComponent";
 
 //const FORM_PARTS = ["person", "contact", "payment", "summary"];
 
-const state = {
-  isVisible: false,
-  errorMessages: []
-};
-
-const RegistrationComponent = ({ user, updateUserAction, registerUserAction }) => {
+const RegistrationComponent = ({ user, errors, updateUserAction, registerUserAction }) => {
   // onPreviousClick(evt) {
   // 	evt.preventDefault();
   // 	this.validateUser();
@@ -59,14 +54,15 @@ const RegistrationComponent = ({ user, updateUserAction, registerUserAction }) =
         <RegistrationSummaryComponent
           user={user}
           updateUserAction={updateUserAction}
+          registerUserAction={registerUserAction}
         />
 
         <section
           id="error-messages"
-          className={state.errorMessages.length > 0 ? "visible" : "hidden"}
+          className={errors.length > 0 ? "visible" : "hidden"}
         >
           <ul role="alert">
-            {state.errorMessages.map((msg, i) => {
+            {errors.map((msg, i) => {
               return <li key={i}>{msg}</li>;
             })}
           </ul>

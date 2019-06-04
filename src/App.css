@@ -11,3 +11,7 @@ h2 {
 fieldset {
   border: 0;
 }
+
+dt {
+  font-weight: bold;
+}
