@@ -63,25 +63,25 @@ const RegistrationComponent = ({ user, errors = [], updateUserAction, registerUs
         >
           <ul role="alert">
             {errors.map((msg, i) => {
-              return <li key={i}>{msg}</li>;
+              return <li key={i}><i className={"material-icons"}>error_outline</i> {msg}</li>;
             })}
           </ul>
         </section>
 
-        <nav>
-          <ul>
-            <li>
-              <a onClick={() => {}} className="btn">
-                {"Previous"}
-              </a>
-            </li>
-            <li>
-              <button onClick={() => {}} className="btn">
-                {"Next"}
-              </button>
-            </li>
-          </ul>
-        </nav>
+        {/*<nav>*/}
+        {/*  <ul>*/}
+        {/*    <li>*/}
+        {/*      <a onClick={() => {}} className="btn">*/}
+        {/*        {"Previous"}*/}
+        {/*      </a>*/}
+        {/*    </li>*/}
+        {/*    <li>*/}
+        {/*      <button onClick={() => {}} className="btn">*/}
+        {/*        {"Next"}*/}
+        {/*      </button>*/}
+        {/*    </li>*/}
+        {/*  </ul>*/}
+        {/*</nav>*/}
       </form>
     </section>
   );

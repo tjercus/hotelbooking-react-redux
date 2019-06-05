@@ -22,11 +22,11 @@ const isEmailPattern = str => /[a-z@.]/.test(str);
 
 const isNumeric = str => /[0-9]/.test(str);
 
-const validateNumeric = a => isNumeric(a) ? Success(a) : Failure(["Not numeric"]);
+const validateNumeric = a => isNumeric(a) ? Success(a) : Failure([`'${a}' is not numeric`]);
 
-const validateLongerThanFive = str => isGreaterThanFive(str) ? Success(str) : Failure(["Minimum length of 6 is required."]);
+const validateLongerThanFive = str => isGreaterThanFive(str) ? Success(str) : Failure([`Minimum length of 6 is required for '${str}'`]);
 
-const validateTenLong = str => isTenLong(str) ? Success(str) : Failure(["Should be 10 long."]);
+const validateTenLong = str => isTenLong(str) ? Success(str) : Failure([`'${str}' should be 10 long.`]);
 
 /* --------------------------- exports below ---------------------------- */
 
@@ -34,4 +34,4 @@ export const validateUserName = name => validateLongerThanFive(name);
 
 export const validatePhone = phone => Success().concat(validateTenLong(phone)).concat(validateNumeric(phone));//.map(__ => phone);
 
-export const validateEmailAddress = email => isEmailPattern(email) ? Success(email) : Failure(["Not an e-mail address"]);
+export const validateEmailAddress = email => isEmailPattern(email) ? Success(email) : Failure([`'${email}' is not an e-mail address`]);

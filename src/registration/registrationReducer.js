@@ -23,10 +23,14 @@ const addUser = user => {
 const registrationReducer = (state = defaultState, action) => {
   if (UPDATE_USER_CMD === action.type) {
     console.log("UPDATE_USER_CMD", action.payload);
+    const newUser = { ...state.user, ...action.payload.data };
     return {
       ...state,
-      user: { ...state.user, ...action.payload.data },
-      errors: [] // ({ ...state.user, ...action.payload.data }, validationRules)
+      user: newUser,
+      errors: validateRegistration(newUser).matchWith({
+        Success: () => [],
+        Failure: ({ value }) => value
+      })
     };
   }
   if (REGISTER_USER_CMD === action.type) {
@@ -34,7 +38,7 @@ const registrationReducer = (state = defaultState, action) => {
     console.log("newUser", newUser);
     return {
       ...state,
-      user: newUser,
+      user: addUser(newUser),
       errors: validateRegistration(newUser).matchWith({
         Success: () => [],
         Failure: ({ value }) => value
