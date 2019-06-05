@@ -10,7 +10,7 @@ import RegistrationSummaryComponent from "./RegistrationSummaryComponent";
 
 //const FORM_PARTS = ["person", "contact", "payment", "summary"];
 
-const RegistrationComponent = ({ user, errors, updateUserAction, registerUserAction }) => {
+const RegistrationComponent = ({ user, errors = [], updateUserAction, registerUserAction }) => {
   // onPreviousClick(evt) {
   // 	evt.preventDefault();
   // 	this.validateUser();
@@ -59,7 +59,7 @@ const RegistrationComponent = ({ user, errors, updateUserAction, registerUserAct
 
         <section
           id="error-messages"
-          className={errors.length > 0 ? "visible" : "hidden"}
+          className={errors && errors.length > 0 ? "visible" : "hidden"}
         >
           <ul role="alert">
             {errors.map((msg, i) => {

@@ -1,36 +1,37 @@
-import { map, compose, sequence, mergeWithKey } from "ramda";
-import Result from "folktale/result";
+import { curry, compose, prop } from "ramda";
+import Validation from "folktale/validation";
 
 // Folktale versions of algebraic Either.Right and Either.Left
-const { Ok, Error } = Result;
+const { Success, Failure } = Validation;
 
-const makePredicate = ([predFn, e]) => a => (predFn(a) ? Ok(a) : Error(e));
+const isGreaterThan = curry((len, a) => a > len);
 
-const makePredicates = map(makePredicate);
+const isGreaterThanFive = isGreaterThan(5);
 
-const runPredicates = ([input, validations]) => {
-  console.log(input, validations);
-  return map(predFn => predFn(input), makePredicates(validations));
-}
+const isOfEqualLength = curry((len, a) => a === len);
 
-const validate = map(
+const isLengthEqualTo = len =>
   compose(
-    sequence(Result.of),
-    runPredicates
-  )
-);
+    isOfEqualLength(len),
+    prop("length")
+  );
 
-const makeValidationObject = mergeWithKey((k, l, r) => [l, r]);
+const isTenLong = isLengthEqualTo(10);
 
-/* ----------------------- exportables below ----------------------- */
+const isEmailPattern = str => /[a-z@.]/.test(str);
 
-export const getErrors = compose(
-  validate,
-  makeValidationObject
-);
+const isNumeric = str => /[0-9]/.test(str);
 
-export const displayError = result =>
-  result.cata({
-    Ok: a => null,
-    Error: errorMsg => errorMsg
-  });
+const validateNumeric = a => isNumeric(a) ? Success(a) : Failure(["Not numeric"]);
+
+const validateLongerThanFive = str => isGreaterThanFive(str) ? Success(str) : Failure(["Minimum length of 6 is required."]);
+
+const validateTenLong = str => isTenLong(str) ? Success(str) : Failure(["Should be 10 long."]);
+
+/* --------------------------- exports below ---------------------------- */
+
+export const validateUserName = name => validateLongerThanFive(name);
+
+export const validatePhone = phone => Success().concat(validateTenLong(phone)).concat(validateNumeric(phone));//.map(__ => phone);
+
+export const validateEmailAddress = email => isEmailPattern(email) ? Success(email) : Failure(["Not an e-mail address"]);

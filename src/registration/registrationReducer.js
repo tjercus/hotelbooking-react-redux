@@ -1,9 +1,5 @@
-import { map } from "ramda";
-
 import { UPDATE_USER_CMD, REGISTER_USER_CMD } from "./registrationConstants";
-// import UsersRepository from "../users/UsersRepository";
-import { validationRules } from "./validationRules";
-import { displayError, getErrors } from "../validation";
+import {validateRegistration} from "./validateRegistration";
 
 const defaultState = {
   user: {
@@ -27,18 +23,22 @@ const addUser = user => {
 const registrationReducer = (state = defaultState, action) => {
   if (UPDATE_USER_CMD === action.type) {
     console.log("UPDATE_USER_CMD", action.payload);
-    // console.log(map(displayError, getErrors(action.payload.data, validationRules)));
     return {
       ...state,
       user: { ...state.user, ...action.payload.data },
-      errors: getErrors({ ...state.user, ...action.payload.data }, validationRules)
+      errors: [] // ({ ...state.user, ...action.payload.data }, validationRules)
     };
   }
   if (REGISTER_USER_CMD === action.type) {
+    const newUser = { ...state.user, ...action.payload.data };
+    console.log("newUser", newUser);
     return {
       ...state,
-      user: addUser(state.user),
-      errors: getErrors({ ...state.user, ...action.payload.data }, validationRules)
+      user: newUser,
+      errors: validateRegistration(newUser).matchWith({
+        Success: () => [],
+        Failure: ({ value }) => value
+      })
     };
   }
   return state;
