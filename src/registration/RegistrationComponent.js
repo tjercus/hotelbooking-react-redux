@@ -10,7 +10,7 @@ import RegistrationSummaryComponent from "./RegistrationSummaryComponent";
 
 //const FORM_PARTS = ["person", "contact", "payment", "summary"];
 
-const RegistrationComponent = ({ user, errors = [], updateUserAction, registerUserAction }) => {
+const RegistrationComponent = ({ activeScene, user, errors = [], updateUserAction, registerUserAction }) => {
   // onPreviousClick(evt) {
   // 	evt.preventDefault();
   // 	this.validateUser();
@@ -40,6 +40,7 @@ const RegistrationComponent = ({ user, errors = [], updateUserAction, registerUs
   // }
 
   return (
+    activeScene === "registration" &&
     <section id="regform" className={"card-panel"}>
       <form name="registration-form">
         <RegistrationPersonComponent
@@ -88,6 +89,7 @@ const RegistrationComponent = ({ user, errors = [], updateUserAction, registerUs
 };
 
 RegistrationComponent.propTypes = {
+  activeScene: PropTypes.string.isRequired,
 	user: PropTypes.shape(userShape),
 	updateUserAction: PropTypes.func.isRequired,
 	registerUserAction: PropTypes.func.isRequired

@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 
 import CartRowComponent from "./CartRowComponent";
 
-const CartList = ({ items, total, delItemFromCartAction }) => {
+const CartList = ({ activeScene, items, total, delItemFromCartAction }) => {
   console.log("CartList", items);
   return (
+    activeScene === "cart" &&
     <section id="cart" className={"cart-panel card-panel"}>
       <h2 className={"header"}>Cart</h2>
 
@@ -39,6 +40,7 @@ const CartList = ({ items, total, delItemFromCartAction }) => {
 };
 
 CartList.propTypes = {
+  activeScene: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
