@@ -1,0 +1,2 @@
+
+export const ACTIVATE_SCENE_CMD = "ACTIVATE_SCENE_CMD";

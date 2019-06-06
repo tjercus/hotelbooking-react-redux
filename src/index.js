@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import 'materialize-css/dist/css/materialize.min.css'
 //
 import "./index.css";
-import App from "./App";
+import AppContainer from "./app/AppContainer";
 import rootReducer from "./reducers";
 
 // const offersRepository = new OffersRepository();
@@ -16,7 +16,7 @@ const store = createStore(rootReducer);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <AppContainer />
   </Provider>,
   document.getElementById("root")
 );

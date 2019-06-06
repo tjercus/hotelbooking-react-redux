@@ -5,7 +5,8 @@ import {addItemToCartActionCreator} from "../cart/cartActions";
 const mapStateToProps = state => {
   console.log("OffersContainer.mapStateToProps", state);
   return {
-    offers: state.offersReducer.offers
+    offers: state.offersReducer.offers,
+    activeScene: state.appReducer.activeScene
   }
 };
 

@@ -6,7 +6,8 @@ const mapStateToProps = state => {
   console.log("mapStateToProps", state);
   return {
     items: state.cartReducer.items,
-    total: state.cartReducer.total
+    total: state.cartReducer.total,
+    activeScene: state.appReducer.activeScene
   };
 };
 

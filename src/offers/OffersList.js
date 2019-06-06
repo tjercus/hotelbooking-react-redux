@@ -38,7 +38,8 @@ OffersList.propTypes = {
       name: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired
     }).isRequired
-  ).isRequired
+  ).isRequired,
+  addItemToCartAction: PropTypes.func.isRequired
 };
 
 export default OffersList;

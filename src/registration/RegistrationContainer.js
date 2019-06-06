@@ -6,7 +6,8 @@ const mapStateToProps = state => {
   console.log("RegistrationContainer.mapStateToProps", state);
   return {
     user: state.registrationReducer.user,
-    errors: state.registrationReducer.errors
+    errors: state.registrationReducer.errors,
+    activeScene: state.appReducer.activeScene
   };
 };
 
