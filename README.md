@@ -5,8 +5,8 @@ demo hotelbooking app with react, redux and react-redux
 
 ## TODO
 
- - use a styling engine or css framework like materializecss.com
- - use react-router for component switching
+ - style registration form
+ - style validation messages, for example, inline
  
 ## credits
 
