@@ -6,9 +6,9 @@ const RegistrationPaymentComponent = ({ updateUserAction }) => {
 
   return (
     <section id="registration-payment">
-      <legend>How would you like to pay?</legend>
+      <legend>{"How would you like to pay?"}</legend>
       <fieldset className={"row"}>
-        <label htmlFor="creditcard">Creditcard</label>
+        <label htmlFor="creditcard">{"Creditcard "}</label>
         <input
           id="creditcard"
           name="creditcard"

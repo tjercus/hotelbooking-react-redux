@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 
 import PROVINCES from "./PROVINCES";
@@ -12,7 +12,8 @@ export const RegistrationPersonComponent = ({updateUserAction}) => {
     <section id="registration-person" className={""}>
       <legend>Who are you?</legend>
       <fieldset className={"row"}>
-        <label htmlFor="name">Name</label>
+        <i className="material-icons prefix">account_circle</i>
+        <label htmlFor="name">{"Name"}</label>
         <input
           id="name"
           name="name"
@@ -20,11 +21,11 @@ export const RegistrationPersonComponent = ({updateUserAction}) => {
           value={name}
           onChange={evt => setName(evt.target.value)}
           onBlur={() => {
-            updateUserAction({ name: name });
+            updateUserAction({name: name});
           }}
         />
       </fieldset>
-      <fieldset className={"row"}>
+      <div className={"row"}>
         <label htmlFor="gender">Gender</label>
         <label htmlFor="gender">
           <input
@@ -33,23 +34,25 @@ export const RegistrationPersonComponent = ({updateUserAction}) => {
             id="gender"
             onChange={() => setGender("m")}
             onBlur={() => {
-              updateUserAction({ gender: "m" });
+              updateUserAction({gender: "m"});
             }}
             value={gender}
-          />{" "}
-          male
+          />
+          <span>{" male"}</span>
         </label>
         <label htmlFor="gender">
           <input
             type="radio"
             name="gender"
             onChange={() => setGender("f")}
-            onBlur={() => {updateUserAction({ gender: "f" })}}
+            onBlur={() => {
+              updateUserAction({gender: "f"})
+            }}
             value={gender}
-          />{" "}
-          female
+          />
+          <span>{" female"}</span>
         </label>
-      </fieldset>
+      </div>
       <fieldset className={"row"}>
         <label htmlFor="state">State/Province</label>
         <select
@@ -58,7 +61,7 @@ export const RegistrationPersonComponent = ({updateUserAction}) => {
           value={province}
           onChange={evt => setProvince(evt.target.value)}
           onBlur={() => {
-            updateUserAction({ province: province });
+            updateUserAction({province: province});
           }}
         >
           {PROVINCES.map((prov, i) => {

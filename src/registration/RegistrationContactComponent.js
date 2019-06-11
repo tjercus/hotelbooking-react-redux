@@ -9,7 +9,7 @@ const RegistrationContactComponent = ({ updateUserAction }) => {
     <section id="registration-contact">
       <legend>How can we contact you?</legend>
       <fieldset className={"row"}>
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email">{"Email "}</label>
         <input
           id="email"
           name="email"
@@ -26,7 +26,8 @@ const RegistrationContactComponent = ({ updateUserAction }) => {
       </fieldset>
 
       <fieldset className={"row"}>
-        <label htmlFor="phone">Telephone</label>
+        <i className="material-icons prefix">phone</i>
+        <label htmlFor="phone">{"Telephone "}</label>
         <input
           id="phone"
           name="phone"

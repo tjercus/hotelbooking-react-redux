@@ -17,13 +17,13 @@ const App = ({activeScene, activateSceneAction}) => {
               {"Hotelbooking with redux -"} {activeScene}
             </a>
             <ul id="nav-mobile" className="right hide-on-med-and-down">
-              <li>
+              <li className={activeScene === "offers" ? "active" : ""}>
                 <a href="#" onClick={() => activateSceneAction("offers")}>{"Offers"}</a>
               </li>
-              <li>
+              <li className={activeScene === "cart" ? "active" : ""}>
                 <a href="#" onClick={() => activateSceneAction("cart")}>{"Cart"}</a>
               </li>
-              <li>
+              <li className={activeScene === "registration" ? "active" : ""}>
                 <a href="#" onClick={() => activateSceneAction("registration")}>{"Registration"}</a>
               </li>
             </ul>

@@ -10,8 +10,21 @@ h2 {
 
 fieldset {
   border: 0;
+  display: block;
 }
 
 dt {
   font-weight: bold;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="tel"] {
+  max-width: 10em;
+}
+
+input[type="number"] {
+  max-width: 8em;
 }
