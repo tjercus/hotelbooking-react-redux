@@ -1,14 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import Materialize from "materialize-css";
 
 const RegistrationContactComponent = ({ updateUserAction }) => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState(0);
 
+  useEffect(() => {
+    setTimeout(() => {
+      Materialize.updateTextFields();
+      const elems = document.querySelectorAll('select');
+      Materialize.FormSelect.init(elems);
+      // alert("materialize loaded");
+    }, 1000);
+  });
+
   return (
-    <section id="registration-contact">
-      <legend>How can we contact you?</legend>
-      <fieldset className={"row"}>
+    <section id="registration-contact" className={"row"}>
+      <div className={"input-field col s6"}>
+        <i className="material-icons prefix">email</i>
         <label htmlFor="email">{"Email "}</label>
         <input
           id="email"
@@ -23,9 +33,9 @@ const RegistrationContactComponent = ({ updateUserAction }) => {
           }}
           placeholder="Email"
         />
-      </fieldset>
+      </div>
 
-      <fieldset className={"row"}>
+      <div className={"input-field col s6"}>
         <i className="material-icons prefix">phone</i>
         <label htmlFor="phone">{"Telephone "}</label>
         <input
@@ -41,7 +51,7 @@ const RegistrationContactComponent = ({ updateUserAction }) => {
           }}
           placeholder="Telephone"
         />
-      </fieldset>
+      </div>
     </section>
   );
 };

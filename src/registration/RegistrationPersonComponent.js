@@ -1,74 +1,91 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 import PROVINCES from "./PROVINCES";
+import Materialize from "materialize-css";
 
 export const RegistrationPersonComponent = ({updateUserAction}) => {
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
   const [province, setProvince] = useState("");
 
+  useEffect(() => {
+    setTimeout(() => {
+      Materialize.updateTextFields();
+      const elems = document.querySelectorAll('select');
+      Materialize.FormSelect.init(elems);
+      // alert("materialize loaded");
+    }, 1000);
+  });
+
   return (
-    <section id="registration-person" className={""}>
-      <legend>Who are you?</legend>
-      <fieldset className={"row"}>
-        <i className="material-icons prefix">account_circle</i>
-        <label htmlFor="name">{"Name"}</label>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          value={name}
-          onChange={evt => setName(evt.target.value)}
-          onBlur={() => {
-            updateUserAction({name: name});
-          }}
-        />
-      </fieldset>
+    <section id="registration-person">
       <div className={"row"}>
-        <label htmlFor="gender">Gender</label>
-        <label htmlFor="gender">
+        <div className={"input-field col s6"}>
+          <i className="material-icons prefix">account_circle</i>
+          <label htmlFor="name">{"Name"}</label>
           <input
-            type="radio"
-            name="gender"
-            id="gender"
-            onChange={() => setGender("m")}
+            id="name"
+            name="name"
+            type="text"
+            value={name}
+            onChange={evt => setName(evt.target.value)}
             onBlur={() => {
-              updateUserAction({gender: "m"});
+              updateUserAction({name: name});
             }}
-            value={gender}
           />
-          <span>{" male"}</span>
-        </label>
-        <label htmlFor="gender">
-          <input
-            type="radio"
-            name="gender"
-            onChange={() => setGender("f")}
-            onBlur={() => {
-              updateUserAction({gender: "f"})
-            }}
-            value={gender}
-          />
-          <span>{" female"}</span>
-        </label>
+        </div>
+        <div className={"input-field col s6"}>
+          <p>
+          <label htmlFor="gender">
+            <input
+              type="radio"
+              name="gender"
+              id="gender"
+              onChange={() => setGender("m")}
+              onBlur={() => {
+                updateUserAction({gender: "m"});
+              }}
+              value={gender}
+            />
+            <span>{" male"}</span>
+          </label>
+          </p>
+          <p>
+          <label htmlFor="gender">
+            <input
+              type="radio"
+              name="gender"
+              onChange={() => setGender("f")}
+              onBlur={() => {
+                updateUserAction({gender: "f"})
+              }}
+              value={gender}
+            />
+            <span>{" female"}</span>
+          </label>
+          </p>
+        </div>
       </div>
-      <fieldset className={"row"}>
-        <label htmlFor="state">State/Province</label>
-        <select
-          id="province"
-          name="province"
-          value={province}
-          onChange={evt => setProvince(evt.target.value)}
-          onBlur={() => {
-            updateUserAction({province: province});
-          }}
-        >
-          {PROVINCES.map((prov, i) => {
-            return <option key={i}>{prov}</option>;
-          })}
-        </select>
-      </fieldset>
+      <div className={"row"}>
+        <div className={"input-field col s6"}>
+          <i className="material-icons prefix">location_on</i>
+          <label htmlFor="state">State/Province</label>
+          <select
+            id="province"
+            name="province"
+            value={province}
+            onChange={evt => setProvince(evt.target.value)}
+            onBlur={() => {
+              updateUserAction({province: province});
+            }}
+          >
+            {PROVINCES.map((prov, i) => {
+              return <option key={i} value={prov}>{prov}</option>;
+            })}
+          </select>
+        </div>
+       </div>
     </section>
   );
 };

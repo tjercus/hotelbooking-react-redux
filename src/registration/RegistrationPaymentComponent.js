@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import Materialize from "materialize-css";
 
 const RegistrationPaymentComponent = ({ updateUserAction }) => {
   const [creditcard, setCreditcard] = useState(0);
 
+  useEffect(() => {
+    setTimeout(() => {
+      Materialize.updateTextFields();
+      const elems = document.querySelectorAll('select');
+      Materialize.FormSelect.init(elems);
+    }, 1000);
+  });
+
   return (
-    <section id="registration-payment">
-      <legend>{"How would you like to pay?"}</legend>
-      <fieldset className={"row"}>
+    <section id="registration-payment" className={"row"}>
+      <div className={"input-field col s6"}>
+        <i className="material-icons prefix">creditcard</i>
         <label htmlFor="creditcard">{"Creditcard "}</label>
         <input
           id="creditcard"
@@ -22,7 +31,7 @@ const RegistrationPaymentComponent = ({ updateUserAction }) => {
           }}
           placeholder="Creditcard"
         />
-      </fieldset>
+      </div>
     </section>
   );
 };

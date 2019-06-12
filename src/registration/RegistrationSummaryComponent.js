@@ -5,9 +5,9 @@ import { userShape } from "./registrationConstants";
 // TODO provide inline validation
 const RegistrationSummaryComponent = ({ user, registerUserAction }) => {
   return (
-    <section id="registration-summary">
-      <legend>Summary</legend>
-      <fieldset>
+    <div id="registration-summary">
+      <h4>Summary</h4>
+      <div className={"col s12"}>
         <dl>
           <dt>Name</dt>
           <dd>{user.name}</dd>
@@ -22,7 +22,7 @@ const RegistrationSummaryComponent = ({ user, registerUserAction }) => {
           <dt>Creditcard</dt>
           <dd>{user.creditcard}</dd>
         </dl>
-      </fieldset>
+      </div>
 
       <button
         onClick={evt => {
@@ -33,7 +33,7 @@ const RegistrationSummaryComponent = ({ user, registerUserAction }) => {
       >
         {"Register"}
       </button>
-    </section>
+    </div>
   );
 };
 

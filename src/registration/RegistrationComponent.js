@@ -8,41 +8,11 @@ import RegistrationContactComponent from "./RegistrationContactComponent";
 import RegistrationPaymentComponent from "./RegistrationPaymentComponent";
 import RegistrationSummaryComponent from "./RegistrationSummaryComponent";
 
-//const FORM_PARTS = ["person", "contact", "payment", "summary"];
-
 const RegistrationComponent = ({ activeScene, user, errors = [], updateUserAction, registerUserAction }) => {
-  // onPreviousClick(evt) {
-  // 	evt.preventDefault();
-  // 	this.validateUser();
-  // 	this.goPrevious();
-  // }
-  //
-  // goPrevious() {
-  // 	let currentIndex = FORM_PARTS.indexOf(this.state.currentFormPart);
-  // 	let newIndex = FORM_PARTS.indexOf(this.state.currentFormPart) - 1;
-  // 	let lastIndex = (FORM_PARTS.length - 1);
-  // 	if (newIndex < 0) newIndex = lastIndex;
-  // 	this.setState({currentFormPart: FORM_PARTS[newIndex]});
-  // }
-  //
-  // onNextClick(evt) {
-  // 	evt.preventDefault();
-  // 	this.validateUser();
-  // 	this.goNext();
-  // }
-  //
-  // goNext() {
-  // 	let currentIndex = FORM_PARTS.indexOf(this.state.currentFormPart);
-  // 	let newIndex = FORM_PARTS.indexOf(this.state.currentFormPart) + 1;
-  // 	let lastIndex = (FORM_PARTS.length - 1);
-  // 	if (newIndex > lastIndex) newIndex = 0;
-  // 	this.setState({currentFormPart: FORM_PARTS[newIndex]});
-  // }
-
   return (
     activeScene === "registration" &&
     <section id="regform" className={"card-panel"}>
-      <form name="registration-form">
+      <form name="registration-form col s12">
         <RegistrationPersonComponent
           updateUserAction={updateUserAction}
         />
@@ -68,21 +38,6 @@ const RegistrationComponent = ({ activeScene, user, errors = [], updateUserActio
             })}
           </ul>
         </section>
-
-        {/*<nav>*/}
-        {/*  <ul>*/}
-        {/*    <li>*/}
-        {/*      <a onClick={() => {}} className="btn">*/}
-        {/*        {"Previous"}*/}
-        {/*      </a>*/}
-        {/*    </li>*/}
-        {/*    <li>*/}
-        {/*      <button onClick={() => {}} className="btn">*/}
-        {/*        {"Next"}*/}
-        {/*      </button>*/}
-        {/*    </li>*/}
-        {/*  </ul>*/}
-        {/*</nav>*/}
       </form>
     </section>
   );
