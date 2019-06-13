@@ -5,8 +5,11 @@ demo hotelbooking app with react, redux and react-redux
 
 ## TODO
 
- - style registration form
+ - style registration form (3/4 done)
  - style validation messages, for example, inline
+ 
+## NICE TO HAVE 
+ - use Monoids for cart price calculation (@see https://fsharpforfunandprofit.com/posts/monoids-part2/)
  
 ## credits
 
