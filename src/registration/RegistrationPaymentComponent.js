@@ -16,7 +16,7 @@ const RegistrationPaymentComponent = ({ updateUserAction }) => {
   return (
     <section id="registration-payment" className={"row"}>
       <div className={"input-field col s6"}>
-        <i className="material-icons prefix">creditcard</i>
+        <i className="material-icons prefix">credit_card</i>
         <label htmlFor="creditcard">{"Creditcard "}</label>
         <input
           id="creditcard"
