@@ -27,7 +27,7 @@ const RegistrationPaymentComponent = ({ updateUserAction }) => {
             setCreditcard(evt.target.value);
           }}
           onBlur={() => {
-            updateUserAction(creditcard);
+            updateUserAction({ creditcard });
           }}
           placeholder="Creditcard"
         />
