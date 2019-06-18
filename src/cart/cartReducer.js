@@ -1,5 +1,5 @@
 import { ADD_ITEM_CMD, DEL_ITEM_CMD } from "./cartConstants";
-import { curry, filter, pluck, sum } from "ramda";
+import { curry, filter, pluck, sum, concat } from "ramda";
 
 const getPrices = pluck("price");
 const sumOfItems = items => sum(getPrices(items));
@@ -15,13 +15,12 @@ const defaultState = {
 const cartReducer = (state = defaultState, action) => {
   if (action.type === ADD_ITEM_CMD) {
     // dynamically change from offer to item id
-    const updatedItems = state.items.concat({
+    const updatedItems = concat(state.items, [{
       ...action.payload.item,
       id: randomId()
-    });
+    }]);
     // calculate new total
-    const newTotal = sumOfItems(updatedItems);
-    return { ...state, items: updatedItems, total: newTotal };
+    return { ...state, items: updatedItems, total: sumOfItems(updatedItems) };
   }
   if (action.type === DEL_ITEM_CMD) {
     const idToDelete = action.payload.item.id;

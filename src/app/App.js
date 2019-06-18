@@ -9,7 +9,7 @@ import NavMenuItemComponent from "./NavMenuItemComponent";
 
 import { MENU_ITEMS } from "./appConstants";
 
-const App = ({activeScene, activateSceneAction}) => {
+const App = ({ activeScene, activateSceneAction }) => {
   return (
     <div id="app">
       <header>
@@ -19,18 +19,22 @@ const App = ({activeScene, activateSceneAction}) => {
               {"Redux Hotelbooking -"} {activeScene}
             </a>
             <ul id="nav-mobile" className="right hide-on-med-and-down">
-              {MENU_ITEMS.map(itemName => <NavMenuItemComponent activeScene={activeScene}
-                                                                clickHandler={activateSceneAction}
-                                                                itemName={itemName}/>)}
-
+              {MENU_ITEMS.map(itemName => (
+                <NavMenuItemComponent
+                  activeScene={activeScene}
+                  clickHandler={activateSceneAction}
+                  itemName={itemName}
+                  key={itemName}
+                />
+              ))}
             </ul>
           </div>
         </nav>
       </header>
       <article className="container">
-        <OffersContainer/>
-        <CartContainer/>
-        <RegistrationContainer/>
+        <OffersContainer />
+        <CartContainer />
+        <RegistrationContainer />
       </article>
     </div>
   );
